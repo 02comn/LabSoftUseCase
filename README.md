@@ -37,7 +37,6 @@ O banco de dados do sistema é o `dbTasks`. Ele possui duas tabelas relacionadas
 ```sql
 CREATE DATABASE dbTasks;
 GO
-
 USE dbTasks;
 GO
 
@@ -59,19 +58,19 @@ CREATE TABLE Tarefa (
     DataCancelada DATETIME NULL,
     StatusTarefa VARCHAR(30) NOT NULL,
     Prazo VARCHAR(20) NOT NULL,
-    CodigoFuncionario INT NOT NULL,
-    CONSTRAINT FK_Tarefa_Funcionario FOREIGN KEY (CodigoFuncionario) 
+    FuncionarioId INT NOT NULL,
+    CONSTRAINT FK_Tarefa_Funcionario FOREIGN KEY (FuncionarioId) 
         REFERENCES Funcionario(Codigo)
 );
 GO
 
--- Dados Iniciais para Teste
+-- Inserindo Dados Iniciais para Teste
 INSERT INTO Funcionario (Nome, Cargo) VALUES 
 ('Carlos Silva', 'Desenvolvedor Senior'),
 ('Ana Oliveira', 'Analista de QA'),
 ('Roberto Santos', 'Gerente de Projetos');
 
-INSERT INTO Tarefa (Descricao, DataPlanejada, DataIniciada, DataFinalizada, DataCancelada, StatusTarefa, Prazo, CodigoFuncionario) VALUES 
+INSERT INTO Tarefa (Descricao, DataPlanejada, DataIniciada, DataFinalizada, DataCancelada, StatusTarefa, Prazo, FuncionarioId) VALUES 
 ('Criar tela de Login', '2026-08-10', '2026-08-01', NULL, NULL, 'Em Andamento', 'Em dia', 1),
 ('Homologar Release 1.0', '2026-08-05', NULL, NULL, NULL, 'Pendente', 'Em atraso', 2);
 GO
@@ -179,6 +178,41 @@ Com a nova Model `Incidente.cs` criada na pasta `Models`:
 4. Clique em **Adicionar**.
 
 🎉 **Teste o funcionamento completo do novo CRUD executando o projeto e navegando até `/Incidente`!**
+
+## ⚡ Passo 5: Criando CRUD para Departamento e Central de Custo
+
+Agora você irá expandir o banco de dados e atualizar o mapeamento no projeto.
+
+### 5.1. Executar o Script SQL no Banco
+
+GitFlow
+
+Se ainda não criou, crie a branch Develop a partir da branch atual.  Ela é sua branch que vocÊ irá criar para consolidar
+as novas mudanças antes de o sistema ser enviado para produção.
+
+Você deve criar a CRUD completo para cada fluxo (Departamento e CentralDeCusto).
+
+Para cada fluxo crie um branch diferente partindo da develop e depois aça
+
+Execute o script abaixo no SQL Server para criar as tabelas
+
+```sql
+USE dbTasks;
+GO
+
+CREATE TABLE Departamento (
+    Codigo INT IDENTITY(1,1) PRIMARY KEY,
+    Descricao VARCHAR(250) NOT NULL,
+    Ativo bit NULL
+);
+GO
+CREATE TABLE CentralDeCusto (
+    Codigo INT IDENTITY(1,1) PRIMARY KEY,
+    NomeCentral VARCHAR(250) NOT NULL,
+    ValorMetaAnual decimal default(0)
+);
+
+```
 
 
 ---
