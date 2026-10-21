@@ -28,7 +28,7 @@ public partial class DbTasksContext : DbContext
     {
         modelBuilder.Entity<Funcionario>(entity =>
         {
-            entity.HasKey(e => e.Codigo).HasName("PK__Funciona__06370DAD989C528A");
+            entity.HasKey(e => e.Codigo).HasName("PK__Funciona__06370DADDCAE83B3");
 
             entity.ToTable("Funcionario");
 
@@ -42,7 +42,7 @@ public partial class DbTasksContext : DbContext
 
         modelBuilder.Entity<Incidente>(entity =>
         {
-            entity.HasKey(e => e.Codigo).HasName("PK__Incident__06370DAD526372E0");
+            entity.HasKey(e => e.Codigo).HasName("PK__Incident__06370DADAF40833B");
 
             entity.ToTable("Incidente");
 
@@ -60,7 +60,7 @@ public partial class DbTasksContext : DbContext
 
         modelBuilder.Entity<Tarefa>(entity =>
         {
-            entity.HasKey(e => e.Codigo).HasName("PK__Tarefa__06370DAD6EC9383B");
+            entity.HasKey(e => e.Codigo).HasName("PK__Tarefa__06370DAD5F0BD1B7");
 
             entity.ToTable("Tarefa");
 
